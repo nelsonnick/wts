@@ -1,0 +1,56 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+页次：${currentPage}/${pageCount }页 &nbsp; 每页显示：${pageSize }条 &nbsp;
+总记录数：${recordCount }条
+<a href="javascript: gotoPage(1)">首页</a>
+
+<s:iterator begin="%{beginPageIndex}" end="%{endPageIndex}" var="num">
+	<s:if test="#num == currentPage">
+		<%-- 当前页 --%>
+		<span class="PageSelectorNum PageSelectorSelected">${num}</span>
+	</s:if>
+	<s:else>
+		<%-- 非当前页 --%>
+		<span class="PageSelectorNum" style="cursor: hand;"
+			onClick="gotoPage(${num});">${num}</span>
+	</s:else>
+</s:iterator>
+
+<a href="javascript: gotoPage(${pageCount})">尾页</a>
+
+转到：
+<select onchange="gotoPage(this.value)" id="_pn">
+	<s:iterator begin="1" end="%{pageCount}" var="num">
+		<option value="${num}">${num}</option>
+	</s:iterator>
+</select>
+<script type="text/javascript">
+			$("#_pn").val("${currentPage}");
+</script>
+<script type="text/javascript">
+		function gotoPage(pageNum) {
+			document.forms[0].pageNum.value = pageNum;
+			document.forms[0].submit();
+		}
+	</script>
+	<script language="javascript">
+		window.onload = function showtable() {
+			var tablename = document.getElementById("mytable");
+			var li = tablename.getElementsByTagName("tr");
+			for (var i = 0; i <= li.length; i++) {
+				
+				li[i].onmouseover = function() {
+					this.style.backgroundColor = "#FFB584";
+				}
+				li[i].onmouseout = function() {
+					this.style.backgroundColor = "#FFFFFF";
+				}
+			}
+		}
+	</script>
+	<script language="javascript">
+//senfe("表格名称","奇数行背景","偶数行背景","鼠标经过背景","点击后背景");
+senfe("TableData","#f8fbfc","#e5f1f4","#ecfbd4","#bce774");
+</script>
+

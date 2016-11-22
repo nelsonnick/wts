@@ -1,0 +1,209 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/script/jquery.PrintArea.js"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/script/pageCommon.js" charset="utf-8"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/script/PageUtils.js" charset="utf-8"></script>
+<script language="javascript" src="${pageContext.request.contextPath}/script/laydate-master/laydate.dev.js" charset="utf-8"></script>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/pageCommon.css" />
+<s:head theme="xhtml"/>  
+<sx:head parseContent="true"/>
+<script language="javascript">
+function senfe(o,a,b,c,d){
+ var t=document.getElementById(o).getElementsByTagName("tr");
+ for(var i=0;i<t.length;i++){
+  t[i].style.backgroundColor=(t[i].sectionRowIndex%2==0)?a:b;
+  t[i].onclick=function(){
+   if(this.x!="1"){
+    this.x="1";
+    this.style.backgroundColor=d;
+   }else{
+    this.x="0";
+    this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+   }
+  }
+  t[i].onmouseover=function(){
+   if(this.x!="1")this.style.backgroundColor=c;
+  }
+  t[i].onmouseout=function(){
+   if(this.x!="1")this.style.backgroundColor=(this.sectionRowIndex%2==0)?a:b;
+  }
+ }
+}
+</script>
+<script type="text/javascript">  
+	$(document).ready(function() {
+		$("#pnumberid").blur(function(){  
+			$.post("check/checkPnumber.action",
+					{pnumber: $("#pnumberid").val()},
+					function(data){
+				$("#pnumber").text(data);
+			});
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#dnumberid").blur(function(){  
+			$.post("check/checkDnumber.action",
+					{dnumber: $("#dnumberid").val()},
+					function(data){
+				$("#dnumber").text(data);
+			});
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#snumberid").blur(function(){  
+			$.post("check/checkSnumber.action",
+					{snumber: $("#snumberid").val()},
+					function(data){
+				$("#snumber").text(data);
+			});
+		});
+	});
+	
+	
+	
+	
+	$(document).ready(function() {
+		var pp = $("#pnumberidedit").val()
+
+		$("#pnumberidedit").blur(function() {
+			if (pp != $("#pnumberidedit").val()) {
+				$.post("check/checkPnumber.action", {
+					pnumber : $("#pnumberidedit").val()
+				}, function(data) {
+					$("#pnumber").text(data);
+				})
+			} else {
+				$("#pnumber").text(" 可以使用！");
+			}
+
+		});
+	});
+	
+	$(document).ready(function() {
+		var dd = $("#dnumberidedit").val()
+
+		$("#dnumberidedit").blur(function() {
+			if (dd != $("#dnumberidedit").val()) {
+				$.post("check/checkDnumber.action", {
+					dnumber : $("#dnumberidedit").val()
+				}, function(data) {
+					$("#dnumber").text(data);
+				})
+			} else {
+				$("#dnumber").text(" 可以使用！");
+			}
+
+		});
+	});
+	
+	$(document).ready(function() {
+		var ss = $("#snumberidedit").val()
+
+		$("#snumberidedit").blur(function() {
+			if (ss != $("#snumberidedit").val()) {
+				$.post("check/checkSnumber.action", {
+					snumber : $("#snumberidedit").val()
+				}, function(data) {
+					$("#snumber").text(data);
+				})
+			} else {
+				$("#snumber").text(" 可以使用！");
+			}
+
+		});
+	});
+	
+	
+
+	$(document).ready(function() {
+		$("#pnameid").blur(function() {
+			$.post("check/checkPname.action", {
+				pname : $("#pnameid").val()
+			}, function(data) {
+				$("#pname").text(data);
+			});
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#unameid").blur(function() {
+			$.post("check/checkUname.action", {
+				uname : $("#unameid").val()
+			}, function(data) {
+				$("#uname").text(data);
+			});
+		});
+	});
+	
+	
+
+	$(document).ready(function() {
+		$("#phoneid").blur(function() {
+			$.post("check/checkPhone.action", {
+				phone : $("#phoneid").val()
+			}, function(data) {
+				$("#phone").text(data);
+			});
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#accountBeforeid").blur(function() {
+			$.post("check/checkAccountBefore.action", {
+				accountBefore : $("#accountBeforeid").val()
+			}, function(data) {
+				$("#accountBefore").text(data);
+			});
+		});
+	});
+
+	$(document).ready(function() {
+		$("#accountAfterid").blur(function() {
+		var ab = $("#accountBeforeid").val();
+			if (ab != $("accountAfterid").val()) {
+				$.post("check/checkAccountAfter.action", {
+					accountAfter : $("#accountAfterid").val()
+				}, function(data) {
+					$("#accountAfter").text(data);
+				})
+			} else {
+				$("#accountAfter").text(" 可以使用！");
+			}
+
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#passwordBeforeid").blur(function() {
+			$.post("check/checkPasswordBefore.action", {
+				passwordBefore : $("#passwordBeforeid").val()
+			}, function(data) {
+				$("#passwordBefore").text(data);
+			});
+		});
+	});
+	
+	$(document).ready(function() {
+		$("#passwordAfterid").blur(function() {
+			$.post("check/checkPasswordAfter.action", {
+				passwordAfter : $("#passwordAfterid").val()
+			}, function(data) {
+				$("#passwordAfter").text(data);
+			});
+		});
+	});
+
+	
+
+
+	$(document).ready(function() {
+		$("#save").hide();
+
+	});
+</script>
